@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Translator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#0f0f23">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Translator">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-language"></i> TranslateAI</h1>
+            <p>Professional-grade translation powered by advanced AI</p>
+        </header>
+
+        <main class="main-content">
+            <div class="translation-card">
+                <div class="language-selector">
+                    <div class="language-input">
+                        <label for="source-lang">From:</label>
+                        <select id="source-lang" class="language-select">
+                            <option value="">Select language...</option>
+                        </select>
+                        <button id="swap-languages" class="swap-btn" title="Swap languages">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="language-input">
+                        <label for="target-lang">To:</label>
+                        <select id="target-lang" class="language-select">
+                            <option value="">Select language...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="text-input-section">
+                    <div class="input-container">
+                        <textarea id="source-text" placeholder="Enter text to translate..." rows="4"></textarea>
+                        <div class="input-actions">
+                            <button id="detect-lang" class="action-btn" title="Detect language">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button id="clear-text" class="action-btn" title="Clear text">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button id="copy-source" class="action-btn" title="Copy text">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="translate-button-container">
+                        <button id="translate-btn" class="translate-btn">
+                            <i class="fas fa-exchange-alt"></i>
+                            Translate
+                        </button>
+                    </div>
+
+                    <div class="output-container">
+                        <textarea id="translated-text" placeholder="Translation will appear here..." rows="4" readonly></textarea>
+                        <div class="output-actions">
+                            <button id="copy-translation" class="action-btn" title="Copy translation">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                            <button id="speak-translation" class="action-btn" title="Speak translation">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="translation-info" id="translation-info" style="display: none;">
+                    <div class="info-item">
+                        <span class="info-label">Source:</span>
+                        <span id="source-lang-name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Target:</span>
+                        <span id="target-lang-name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Characters:</span>
+                        <span id="char-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h3>Enterprise Features</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Lightning Fast</h4>
+                        <p>Sub-second translation processing with enterprise-grade performance</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Secure & Private</h4>
+                        <p>End-to-end encryption with no data retention policies</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h4>AI-Powered</h4>
+                        <p>Advanced neural networks trained on millions of translations</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-cogs"></i>
+                        <h4>API Ready</h4>
+                        <p>RESTful API for seamless integration with your applications</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 TranslateAI. Enterprise translation solutions.</p>
+        </footer>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Translating...</p>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
